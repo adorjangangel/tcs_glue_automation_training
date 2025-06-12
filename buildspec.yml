@@ -3,12 +3,12 @@ version: 0.2
 phases:
   build:
     commands:
-      - pip install pytest
-      - pytest tests/
-      - VERSION=$CODEBUILD_BUILD_NUMBER
-      - SCRIPT_KEY=scripts/etl_job.py
-      - aws s3 cp etl_job.py s3://agangel-tcs-gluebucket/${SCRIPT_KEY}
-      - echo "{\"ScriptLocation\": \"s3://agangel-tcs-gluebucket/$${SCRIPT_KEY}\"}" > artifact.json
+      - |
+        pip install pytest
+        pytest tests/
+        aws s3 cp etl_job.py s3://agangel-tcs-gluebucket/scripts/job-${CODEBUILD_BUILD_NUMBER}.py
+        echo "{\"ScriptLocation\": \"s3://agangel-tcs-gluebucket/scripts/job-${CODEBUILD_BUILD_NUMBER}.py\"}" > artifact.json
+
 artifacts:
   files:
     - artifact.json
