@@ -7,7 +7,7 @@ phases:
         pip install pytest
         pytest tests/
         aws s3 cp etl_job.py s3://agangel-tcs-gluebucket/scripts/job-${CODEBUILD_BUILD_NUMBER}.py
-        echo "{\"ScriptLocation\": \"s3://agangel-tcs-gluebucket/scripts/job-${CODEBUILD_BUILD_NUMBER}.py\"}" > artifact.json
+        echo "{\"ScriptLocation\": \"s3://agangel-tcs-gluebucketscripts/job-${CODEBUILD_BUILD_NUMBER}.py\"}" > artifact.json
 
 artifacts:
   files:
